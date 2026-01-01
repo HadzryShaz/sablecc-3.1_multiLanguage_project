@@ -66,3 +66,77 @@ Tokens
 
     // Unknown tokens
     unknown = [0..0xffff] ;
+
+Productions
+    program = 
+        class_declaration ;
+
+    class_declaration =
+        public? clas ident l_brace member* r_brace ;
+
+    member =
+        {method} method_declaration |
+        {field}  variable_declaration ;
+
+    method_declaration =
+        public? static? void_or_type ident l_par parameter_list? r_par block ;
+
+    void_or_type =
+        {void} void |
+        {type} type ;
+
+    type =
+        {int}    int |
+        {float}  float |
+        {string} string ;
+
+    parameter_list =
+        type ident parameter_rest* ;
+
+    parameter_rest =
+        comma type ident ;
+
+    block = 
+        l_brace statement* r_brace ;
+
+    statement =
+        {assignment}  assign_stmt semi |
+        {variable}    variable_declaration |
+        {if}          if l_par condition r_par block else_clause? |
+        {while}       while l_par condition r_par block |
+        {do}          do block while l_par condition r_par semi |
+        /* Notice the labels [s1]: and [s2]: to prevent redefinition */
+        {for}         for l_par [init]:assign_stmt [s1]:semi [cond]:condition [s2]:semi [step]:assign_stmt r_par block |
+        {print_call}  main l_par expression r_par semi ;
+
+    /* Helper production to allow reuse in 'for' and 'statement' */
+    assign_stmt = 
+        ident assign expression ;
+
+    else_clause =
+        else block ;
+
+    variable_declaration =
+        type ident assign_value? semi ;
+
+    assign_value =
+        assign expression ;
+
+    condition =
+        [left]:expression compare [right]:expression ;
+
+    expression =
+        {add}  expression plus term |
+        {sub}  expression minus term |
+        {term} term ;
+
+    term =
+        {mul}    term mult factor |
+        {div}    term div factor |
+        {factor} factor ;
+
+    factor =
+        {id}      ident |
+        {int}     int_literal |
+        {float}   float_literal |
+        {grouped} l_par expression r_par ;
