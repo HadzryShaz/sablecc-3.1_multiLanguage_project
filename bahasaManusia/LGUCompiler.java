@@ -28,12 +28,14 @@ public class LGUCompiler {
 
         if (option.equals("japanese")) {
             fileName = "JapaneseCompiler.java";
+        } else if (option.equals("hiragana")) {
+            fileName = "HiraganaCompiler.java";
         } else if (option.equals("melayu")) {
             fileName = "MelayuCompiler.java";
         } else if (option.equals("javanese")) {
             fileName = "JavaneseCompiler.java";
         } else {
-            System.err.println("Invalid option. Use: japanese, melayu, or javanese.");
+            System.err.println("Invalid option. Use: japanese, hiragana, melayu, or javanese.");
             return;
         }
 
