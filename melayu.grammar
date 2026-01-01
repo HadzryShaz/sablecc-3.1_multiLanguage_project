@@ -1,0 +1,48 @@
+Package sakura_VOD;
+
+Helpers
+    digit = ['0'..'9'];
+    letter = ['a'..'z'] | ['A'..'Z'];
+    id = letter (letter | digit)*;
+
+Tokens
+    sakura     = 'sakura';
+    hana       = 'bunga';
+    main       = 'utama';
+
+    seisu      = 'integer';
+    jissuu     = 'perpuluhan';
+
+    tame       = 'untuk';
+    aida       = 'selagi';
+    shikashi   = 'selain';
+    moshi      = 'jika';
+    soretomo   = 'ataupun';
+
+    begin      = 'mula';
+    end        = 'tamat';
+
+    assign     = '<-';
+    plus       = '+';
+    minus      = '-';
+    mult       = '*';
+    div        = '/';
+
+    le         = '<=';
+    ge         = '>=';
+    lt         = '<';
+    gt         = '>';
+    eq         = '==';
+
+    lparen     = '(';
+    rparen     = ')';
+    semi       = ';';
+    comma      = ',';
+
+    number     = digit+ ('.' digit+)?;
+    identifier = id;
+
+    blank      = (' ' | '\t' | '\n' | '\r')+;
+
+Ignored Tokens
+    blank;

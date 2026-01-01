@@ -1,0 +1,66 @@
+Package Manusiaberbahasa;
+
+Helpers
+    digit = ['0'..'9'] ;
+    letter = ['a'..'z'] | ['A'..'Z'] ;
+    digits = digit+ ;
+    exp = ['e' + 'E'] ['+' + '-']? digits;
+    newline = [10 + 13] ;
+    non_star = [[0..0xffff] - '*'] ;
+    non_slash = [[0..0xffff] - '/'] ;
+    non_star_slash = [[0..0xffff] - ['*' + '/']];
+
+Tokens
+    // ignore unnecessary token
+    comment1 = '//' [[0..0xffff]-newline]* newline ;
+    comment2 = '/*' non_star* '*' (non_star_slash non_star* '*')* '/' ;
+    space = ' ' | 9 | newline ;
+
+    // keyword(eigo,javanisu,marego,nihongo) all in one grammar to make it more easier to manage
+    clas = 'class'    | 'klas'  | 'darjah'| 'kurasu';
+    public = 'public' | 'umum'  | 'awam'   | 'koukai';
+    static = 'static' | 'tetep' | 'pegun' | 'seiteki';
+    void = 'void'     | 'kosong'| 'gelap' | 'muko';
+    for = 'for'       | 'kanggo'| 'untuk' | 'kurikaeshi';
+    do = 'do'         | 'lakoni'| 'buat'    | 'jikko';
+    while = 'while'   | 'nalika'| 'apabila' | 'aida';
+    if = 'if'         | 'yen'   | 'jika'    | 'moshi';
+    else = 'else'     | 'liyane'| 'selain'  | 'hokani';
+    main = 'main' | 'utama' | 'utama'| 'mein';
+
+    // data types
+    int = 'int'      | 'angka' | 'nomborbulat' | 'seisu';
+    float = 'float'     | 'ambang' | 'perpuluhan'  | 'fudo';
+    string = 'String'  | 'tulisan'  | 'ayat'  | 'mojiretsu';
+
+    // operator
+    assign = '=' ;
+    compare = '==' | '<' | '>' | '<=' | '>=' | '!=' ;
+    plus = '+' ;
+    minus = '-' ;
+    mult = '*' ;
+    div = '/' ;
+
+    // separator
+    l_par = '(' ;
+    r_par = ')' ;
+    l_brace = '{' ;
+    r_brace = '}' ;
+    l_bracket = '[' ;
+    r_bracket = ']' ;
+    semi = ';' ;
+    colon = ':' ;
+    comma = ',' ;
+
+    // identifier
+    ident = (letter | '$' | '_') (letter | digit | '_' | '$')* ;
+
+    // literals so that i can identified eg negative number or perpuluhan
+    int_literal = '-'? digits ;
+    float_literal = '-'? (digits '.' digits? | '.' digits) exp? ('f' | 'F')? ;
+
+    // blank/space
+    blank = (' ' | '\t' | 10 | '\n')+ ;
+
+    // unknown tokens
+    unknown = [0..0xffff] ;
