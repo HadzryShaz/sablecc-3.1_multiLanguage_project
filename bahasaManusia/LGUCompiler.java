@@ -27,7 +27,7 @@ public class LGUCompiler {
         String fileName;
 
 if (option.equals("japanese")) {
-            fileName = "JapaneseCompiler.source";
+            fileName = "JapaneseCompiler.source";  
         } else if (option.equals("hiragana")) {
             fileName = "HiraganaCompiler.source";
         } else if (option.equals("melayu")) {
