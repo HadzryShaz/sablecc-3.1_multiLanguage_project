@@ -1,0 +1,68 @@
+Package bahasaManusia;
+
+Helpers
+    digit = ['0'..'9'] ;
+    letter = ['a'..'z'] | ['A'..'Z'] ;
+    // Hiragana Unicode Range
+    hiragana_char = [0x3041..0x3096] ; 
+    digits = digit+ ;
+    exp = ['e' + 'E'] ['+' + '-']? digits;
+    newline = [10 + 13] ;
+    non_star = [[0..0xffff] - '*'] ;
+    non_slash = [[0..0xffff] - '/'] ;
+    non_star_slash = [[0..0xffff] - ['*' + '/']];
+
+Tokens
+    // ignore unnecessary token
+    comment1 = '//' [[0..0xffff]-newline]* newline ;
+    comment2 = '/*' non_star* '*' (non_star_slash non_star* '*')* '/' ;
+    space = ' ' | 9 | newline ;
+
+    // Keywords: English | Javanese | Malay | Japanese (Katakana) | Hiragana
+    clas   = 'class'  | 'klas'   | 'darjah'  | 'kurasu'     | 'くらす';
+    public = 'public' | 'umum'   | 'awam'    | 'koukai'     | 'こうかい';
+    static = 'static' | 'tetep'  | 'pegun'   | 'seiteki'    | 'せいてき';
+    void   = 'void'   | 'kosong' | 'gelap'   | 'muko'       | 'むこう';
+    for    = 'for'    | 'kanggo' | 'untuk'   | 'kurikaeshi' | 'くりかえし';
+    do     = 'do'     | 'lakoni' | 'buat'    | 'jikko'      | 'じっこう';
+    while  = 'while'  | 'nalika' | 'apabila' | 'aida'       | 'あいだ';
+    if     = 'if'     | 'yen'    | 'jika'    | 'moshi'      | 'もし';
+    else   = 'else'   | 'liyane' | 'selain'  | 'hokani'     | 'ほかに';
+    main   = 'main'   | 'utama'  | 'utama'   | 'mein'       | 'めいん';
+
+    // Data types
+    int    = 'int'    | 'angka'  | 'nomborbulat' | 'seisu'    | 'せいすう';
+    float  = 'float'  | 'ambang' | 'perpuluhan'  | 'fudo'     | 'ふどう';
+    string = 'String' | 'tulisan'| 'ayat'        | 'mojiretsu'| 'もじれつ';
+
+    // Operator
+    assign = '=' ;
+    compare = '==' | '<' | '>' | '<=' | '>=' | '!=' ;
+    plus = '+' ;
+    minus = '-' ;
+    mult = '*' ;
+    div = '/' ;
+
+    // Separator
+    l_par = '(' ;
+    r_par = ')' ;
+    l_brace = '{' ;
+    r_brace = '}' ;
+    l_bracket = '[' ;
+    r_bracket = ']' ;
+    semi = ';' ;
+    colon = ':' ;
+    comma = ',' ;
+
+    // Identifier: now allows Hiragana characters as part of variable names
+    ident = (letter | hiragana_char | '$' | '_') (letter | hiragana_char | digit | '_' | '$')* ;
+
+    // Literals
+    int_literal = '-'? digits ;
+    float_literal = '-'? (digits '.' digits? | '.' digits) exp? ('f' | 'F')? ;
+
+    // Blank/space
+    blank = (' ' | '\t' | 10 | '\n')+ ;
+
+    // Unknown tokens
+    unknown = [0..0xffff] ;
