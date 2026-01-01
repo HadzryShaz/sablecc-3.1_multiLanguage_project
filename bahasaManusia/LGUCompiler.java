@@ -33,7 +33,7 @@ if (option.equals("japanese")) {
         } else if (option.equals("melayu")) {
             fileName = "MelayuCompiler.source";
         } else if (option.equals("javanese")) {
-            fileName = "JavaneseCompiler.source";
+            fileName = "JavaneseCompiler.source"; 
         } else {
             System.err.println("Invalid option. Use: japanese, hiragana, melayu, or javanese.");
             return;
