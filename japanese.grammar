@@ -1,0 +1,48 @@
+Package sakura;
+
+Helpers
+    digit = ['0'..'9'];
+    letter = ['a'..'z'] | ['A'..'Z'];
+    id = letter (letter | digit)*;
+
+Tokens
+    sakura     = 'sakura';
+    hana       = 'hana';
+    main       = 'main';
+
+    seisu      = 'seisu';
+    jissuu     = 'jissuu';
+
+    tame       = 'tame';
+    aida       = 'aida';
+    shikashi   = 'shikashi';
+    moshi      = 'moshi';
+    soretomo   = 'soretomo';
+
+    begin      = 'begin';
+    end        = 'end';
+
+    assign     = '<-';
+    plus       = '+';
+    minus      = '-';
+    mult       = '*';
+    div        = '/';
+
+    le         = '<=';
+    ge         = '>=';
+    lt         = '<';
+    gt         = '>';
+    eq         = '==';
+
+    lparen     = '(';
+    rparen     = ')';
+    semi       = ';';
+    comma      = ',';
+
+    number     = digit+ ('.' digit+)?;
+    identifier = id;
+
+    blank      = (' ' | '\t' | '\n' | '\r')+;
+
+Ignored Tokens
+    blank;
